@@ -5,10 +5,12 @@ import huskybot.cmdFramework.*
 import huskybot.utils.addFields
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.interactions.commands.OptionType
-import warden.framework.SubCommand
 import java.awt.Color
 
-@CommandProperties(description = "View and set server specific settings")
+@CommandProperties(
+    description = "View and set server specific settings",
+    category = CommandCategory.MANAGEMENT
+)
 class Settings : Command(ExecutionType.STANDARD) {
     override fun execute(context: Context) {
         //Invoke subcommand
@@ -53,8 +55,8 @@ class Settings : Command(ExecutionType.STANDARD) {
         )
 
         ctx.embed {
-            setTitle("Server Settings | ${ctx.guild?.name}")
-            setThumbnail(ctx.guild?.iconUrl)
+            setTitle("Server Settings | ${ctx.guild.name}")
+            setThumbnail(ctx.guild.iconUrl)
             setColor(Color.yellow)
             addFields(fields)
         }
